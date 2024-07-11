@@ -1,3 +1,45 @@
+# Newly Added Helper Scripts
+## Lat/Lon -> Local Cartesian/UTM  Converter
+
+* Add any csv file of a track in lat/lon column format to `./inputs/tracks` (See examples in repo)
+
+* See `./outputs/` for output file
+
+* This script will output a csv file in the input format for `main_globaltraj.py`
+
+Format (For Ubuntu 22.04): `python3 input_to_local_cartesian.py <track.csv> <left_width> <right_width> `
+
+Example: `python3 input_to_local_cartesian.py IMS.csv 5.0 5.0`
+
+
+## Local Cartesian -> Lat/Lon  Converter
+
+* Add any csv file of a track in x/y column format or x/y/left_width/right_width to `./inputs/tracks` (See examples in repo)
+
+* See `./outputs/` for output file
+  
+* This script will also directly take in the output of `main_globaltraj.py`
+ 
+Format (For Ubuntu 22.04): `python3 input_to_lat_lon.py <track.csv> <lat origin> <lon origin>`
+
+Example: `python3 input_to_lat_lon.py kentucky_local_cartesian.csv 38.71257633401728 -84.9185701405526`
+
+**Note the origin is the lat/lon coordinate that corresponds to the [x,y] = [0.0,0.0] location of the local cartesian coordinate used
+
+## Lat/Lon Raceline Smoother
+
+* Add any csv file of a track in lat/lon column format to `./inputs/tracks` (See examples in repo)
+
+* See `./outputs/` for output file
+
+* This script will smooth out an input track by a smoothing factor (higher = more smooth) based on a constraint of maximum lateral deviation in meters (higher = more freedom to change the shape of the original track)
+
+Format (For Ubuntu 22.04): `python3 smooth_raceline.py <track.csv> <smoothing factor> <maximum lateral deviation (deg)>`
+
+Example: `python3 smooth_raceline.py kentucky.csv 0.5 0.000005`
+
+
+
 # Introduction
 This repository contains algorithms that allow us to determine an optimal racing line on a race track. You can chose
 between several objectives:
