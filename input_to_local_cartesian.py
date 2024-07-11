@@ -21,15 +21,19 @@ def latlon_to_utm(latitude, longitude):
 # Set up argument parser
 parser = argparse.ArgumentParser(description='Convert lat/long to local Cartesian and add constant columns.')
 parser.add_argument('input_file', type=str, help='Input CSV file with latitude and longitude.')
-parser.add_argument('w_tr_right_m', type=float, help='Constant value for the right track width.')
-parser.add_argument('w_tr_left_m', type=float, help='Constant value for the left track width.')
+parser.add_argument('--w_tr_right_m', type=float,default=5.0, help='Constant value for the right track width.') # meters
+parser.add_argument('--w_tr_left_m', type=float, default=5.0, help='Constant value for the left track width.') # meters
 args = parser.parse_args()
 
 # Read input CSV
-# input_file = args.input_file
 input_file = os.path.join('./inputs/tracks', args.input_file)
-output_file = os.path.splitext(input_file)[0] + "_utm.csv"
-output_file_local_cartesian = os.path.splitext(input_file)[0] + "_local_cartesian.csv"
+output_file = os.path.join('./outputs/input_to_local_cartesian', os.path.splitext(args.input_file)[0] + "_utm.csv")
+output_file_local_cartesian = os.path.join('./outputs/input_to_local_cartesian', os.path.splitext(args.input_file)[0] + "_local_cartesian.csv")
+# output_file = os.path.splitext(input_file)[0] + "_utm.csv"
+# output_file_local_cartesian = os.path.splitext(input_file)[0] + "_local_cartesian.csv"
+
+# Ensure the output directory exists
+os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
 with open(input_file, 'r') as csvfile:
     reader = csv.reader(csvfile)
