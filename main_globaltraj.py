@@ -42,6 +42,7 @@ plot_opts = {"mincurv_curv_lin": False,         # plot curv. linearization (orig
 # file_paths["track_name"] = "handling_track"                                 # artificial track
 file_paths["track_name"] = "berlin_2018"                                    # Berlin Formula E 2018
 # file_paths["track_name"] = "modena_2019"                                    # Modena 2019
+# file_paths["track_name"] = "kentucky_local_cartesian"                                      # Kentucky 2024
 
 # set import options ---------------------------------------------------------------------------------------------------
 imp_opts = {"flip_imp_track": False,                # flip imported track to reverse direction
@@ -56,6 +57,7 @@ imp_opts = {"flip_imp_track": False,                # flip imported track to rev
 # 'mincurv'             minimum curvature optimization without iterative call
 # 'mincurv_iqp'         minimum curvature optimization with iterative call
 # 'mintime'             time-optimal trajectory optimization
+# opt_type = 'mincurv'
 opt_type = 'mintime'
 
 # set mintime specific options (mintime only) --------------------------------------------------------------------------
