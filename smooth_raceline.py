@@ -8,8 +8,8 @@ from scipy.spatial.distance import cdist
 # Set up argument parser
 parser = argparse.ArgumentParser(description='Smooth out the raceline using spline generation with lateral constraints.')
 parser.add_argument('input_file', type=str, help='Input CSV file with latitude and longitude.')
-parser.add_argument('--smoothing_factor', type=float, default=0.5, help='Smoothing factor for the spline.')
-parser.add_argument('--max_lateral_movement', type=float, default=0.000005, help='Maximum lateral movement for any point.') #in degrees lat/lon (approx 0.5 m)
+parser.add_argument('smoothing_factor', type=float, default=0.5, help='Smoothing factor for the spline.')
+parser.add_argument('max_lateral_movement', type=float, default=0.000005, help='Maximum lateral movement for any point.') #in degrees lat/lon (approx 0.5 m)
 
 args = parser.parse_args()
 

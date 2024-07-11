@@ -21,8 +21,8 @@ def latlon_to_utm(latitude, longitude):
 # Set up argument parser
 parser = argparse.ArgumentParser(description='Convert lat/long to local Cartesian and add constant columns.')
 parser.add_argument('input_file', type=str, help='Input CSV file with latitude and longitude.')
-parser.add_argument('--w_tr_right_m', type=float,default=5.0, help='Constant value for the right track width.') # meters
-parser.add_argument('--w_tr_left_m', type=float, default=5.0, help='Constant value for the left track width.') # meters
+parser.add_argument('w_tr_right_m', type=float,default=5.0, help='Constant value for the right track width.') # meters
+parser.add_argument('w_tr_left_m', type=float, default=5.0, help='Constant value for the left track width.') # meters
 args = parser.parse_args()
 
 # Read input CSV
