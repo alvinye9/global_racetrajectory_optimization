@@ -37,11 +37,12 @@ local_x = []
 local_y = []
 
 with open(input_file, 'r') as csvfile:
-    reader = csv.reader(csvfile)
-    next(reader)  # Skip header
+    reader = csv.reader(csvfile, delimiter=';')
     for row in reader:
-        local_x.append(float(row[0]))
-        local_y.append(float(row[1]))
+        if row[0].startswith('#'):
+            continue  # Skip header lines
+        local_x.append(float(row[1]))  # x_m is the second column
+        local_y.append(float(row[2]))  # y_m is the third column
 
 # Convert local Cartesian to lat/lon
 utm_zone = get_utm_zone(args.ref_lon)
@@ -66,3 +67,4 @@ with open(output_file, 'w', newline='') as csvfile:
         writer.writerow([lat, lon])
 
 print(f"Converted data has been written to {output_file}")
+

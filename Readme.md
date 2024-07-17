@@ -1,26 +1,41 @@
 # Newly Added Helper Scripts
+
 ## Lat/Lon -> Local Cartesian/UTM  Converter
 
-* Add any csv file of a track in lat/lon column format to `./inputs/tracks` (See examples in repo)
+* Add any csv file of a track in lat/lon column format (with no header) to `./inputs/tracks` : 
 
-* See `./outputs/` for output file
+```
+39.793150400797195,-86.23885694033116
+39.7931403944002,-86.23885681072544
+```
 
-* This script will output a csv file in the input format for `main_globaltraj.py`
+* See `./outputs/input_to_local_cartesian` for output file
 
-Format (For Ubuntu 22.04): `python3 input_to_local_cartesian.py <track.csv> <left_width> <right_width> `
+* This script will output a csv file in the proper input format for `main_globaltraj.py`
+
+Format for running via terminal (Ubuntu 22.04): `python3 input_to_local_cartesian.py <track.csv> <left_width> <right_width> `
 
 Example: `python3 input_to_local_cartesian.py IMS.csv 5.0 5.0`
 
 
-## Local Cartesian -> Lat/Lon  Converter
+## Local Cartesian -> Lat/Lon and UTM Converter
 
-* Add any csv file of a track in x/y column format or x/y/left_width/right_width to `./inputs/tracks` (See examples in repo)
+* Add any csv file of a track in s/x/y column format  to `./inputs/tracks` :
+```
+# s_m; x_m; y_m; psi_rad; kappa_radpm; vx_mps; ax_mps2
+0.0000000; -2.5460682; -0.0598596; -3.1194816; -0.0000038; 63.7698999; 0.3351950
+1.9992023; -2.5018745; -2.0585725; -3.1194886; -0.0000032; 63.7804075; 0.3342131
+```
 
-* See `./outputs/` for output file
+* The only values that matter are the 1st, 2nd and 3rd rows, you can fill the first row with any arbitrary values
+
+* Use ; as the csv delimiter
+
+* See `./outputs/input_to_lat_lon` for output file (this script also outputs a csv containing the UTM coordinates)
   
-* This script will also directly take in the output of `main_globaltraj.py`
+* This script's input is also the output format of `main_globaltraj.py`
  
-Format (For Ubuntu 22.04): `python3 input_to_lat_lon.py <track.csv> <lat origin> <lon origin>`
+Format for running via terminal (Ubuntu 22.04): `python3 input_to_lat_lon.py <track.csv> <lat origin> <lon origin>`
 
 Example: `python3 input_to_lat_lon.py kentucky_local_cartesian.csv 38.71257633401728 -84.9185701405526`
 
@@ -28,13 +43,18 @@ Example: `python3 input_to_lat_lon.py kentucky_local_cartesian.csv 38.7125763340
 
 ## Lat/Lon Raceline Smoother
 
-* Add any csv file of a track in lat/lon column format to `./inputs/tracks` (See examples in repo)
+* Add any csv file of a track in lat/lon column format to `./inputs/tracks` :
 
-* See `./outputs/` for output file
+```
+39.793150400797195,-86.23885694033116
+39.7931403944002,-86.23885681072544
+```
+
+* See `./outputs/smoothed` for output file
 
 * This script will smooth out an input track by a smoothing factor (higher = more smooth) based on a constraint of maximum lateral deviation in meters (higher = more freedom to change the shape of the original track)
 
-Format (For Ubuntu 22.04): `python3 smooth_raceline.py <track.csv> <smoothing factor> <maximum lateral deviation (deg)>`
+Format for running via terminal (Ubuntu 22.04): `python3 smooth_raceline.py <track.csv> <smoothing factor> <maximum lateral deviation (deg)>`
 
 Example: `python3 smooth_raceline.py kentucky.csv 0.5 0.000005`
 
@@ -69,11 +89,24 @@ Lots of the required functions for trajectory planning are cumulated in our traj
 can be found on https://github.com/TUMFTM/trajectory_planning_helpers. They can be quite useful for other projects as
 well.
 
-# Dependencies
-Use the provided `requirements.txt` in the root directory of this repo, in order to install all required modules.\
-`pip3 install -r /path/to/requirements.txt`
+# Dependencies (DEPRACATED)
 
-The code is developed with Ubuntu 20.04 LTS and Python 3.7.
+The following can be attemped, but may not work as expected on Ubuntu 22.04:
+
+~~Use the provided `requirements.txt` in the root directory of this repo, in order to install all required modules.~~ \
+~~`pip3 install -r /path/to/requirements.txt`~~
+
+~~The code is developed with Ubuntu 20.04 LTS and Python 3.7.~~
+
+Recommended: Install Conda [here](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html)
+
+Create Conda Environment by running in root of repository: `conda env create -f conda_env.yml`
+
+Activate Conda Environment: `conda activate new_env`
+
+Now you can run `main_globaltraj.py`
+
+
 
 ### Solutions for possible installation problems (Windows)
 * `cvxpy`, `cython` or any other package requires a `Visual C++ compiler` -> Download the build tools for Visual Studio
