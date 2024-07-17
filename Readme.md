@@ -89,7 +89,7 @@ Lots of the required functions for trajectory planning are cumulated in our traj
 can be found on https://github.com/TUMFTM/trajectory_planning_helpers. They can be quite useful for other projects as
 well.
 
-# Dependencies (DEPRACATED)
+# Dependencies 
 
 The following can be attemped, but may not work as expected on Ubuntu 22.04:
 
@@ -98,13 +98,15 @@ The following can be attemped, but may not work as expected on Ubuntu 22.04:
 
 ~~The code is developed with Ubuntu 20.04 LTS and Python 3.7.~~
 
-Recommended: Install Conda [here](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html)
+## Recommended Instead: 
 
-Create Conda Environment by running in root of repository: `conda env create -f conda_env.yml`
+* Install Conda [here](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html)
 
-Activate Conda Environment: `conda activate new_env`
+* Create Conda Environment by running in root of repository: `conda env create -f conda_env.yml`
 
-Now you can run `main_globaltraj.py`
+* Activate Conda Environment: `conda activate new_env`
+
+* Now you can run `main_globaltraj.py`
 
 
 
