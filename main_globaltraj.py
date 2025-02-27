@@ -43,7 +43,8 @@ plot_opts = {"mincurv_curv_lin": False,         # plot curv. linearization (orig
 # file_paths["track_name"] = "berlin_2018"                                    # Berlin Formula E 2018
 # file_paths["track_name"] = "modena_2019"                                    # Modena 2019
 # file_paths["track_name"] = "IMS_local_cartesian"                            # IMS 2024
-file_paths["track_name"] = "kentucky_local_cartesian"                         # Kentucky 2024
+# file_paths["track_name"] = "kentucky_local_cartesian"                         # Kentucky 2024
+file_paths["track_name"] = "ims_centerline_remastered_local_cartesian"                         # IMS remastered 2024
 
 # set import options ---------------------------------------------------------------------------------------------------
 imp_opts = {"flip_imp_track": False,                # flip imported track to reverse direction
